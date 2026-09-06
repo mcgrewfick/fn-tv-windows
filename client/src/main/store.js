@@ -4,7 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { app } = require('electron');
+const { app, safeStorage } = require('electron');
 
 const DEFAULTS = {
   servers: [],          // 已保存的服务器 [{ id, name, url, username }]
@@ -25,6 +25,31 @@ class Store {
   constructor() {
     this.file = path.join(app.getPath('userData'), 'config.json');
     this.data = this._load();
+  }
+
+  // 密码加密存储：用系统级 safeStorage 加密，避免明文落盘
+  _enc(pwd) {
+    if (!pwd) return pwd;
+    try {
+      if (safeStorage.isEncryptionAvailable()) {
+        return 'enc:' + safeStorage.encryptString(pwd).toString('base64');
+      }
+    } catch (e) {
+      console.error('[store] encrypt failed:', e.message);
+    }
+    return pwd; // 降级：系统不支持加密时保持原样
+  }
+
+  _dec(pwd) {
+    if (!pwd || typeof pwd !== 'string' || !pwd.startsWith('enc:')) return pwd;
+    try {
+      if (safeStorage.isEncryptionAvailable()) {
+        return safeStorage.decryptString(Buffer.from(pwd.slice(4), 'base64'));
+      }
+    } catch (e) {
+      console.error('[store] decrypt failed:', e.message);
+    }
+    return pwd; // 解密失败时原样返回
   }
 
   _load() {
@@ -49,10 +74,16 @@ class Store {
 
   get(key, fallback) {
     const v = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), this.data);
+    // credentials 下的 password 读取时解密
+    if (key.startsWith('credentials.') && key.endsWith('.password')) return this._dec(v);
     return v === undefined ? fallback : v;
   }
 
   set(key, value) {
+    // credentials 下的 password 写入时加密
+    if (key.startsWith('credentials.') && key.endsWith('.password')) {
+      value = this._enc(value);
+    }
     const keys = key.split('.');
     const last = keys.pop();
     let obj = this.data;
@@ -66,7 +97,13 @@ class Store {
   }
 
   all() {
-    return this.data;
+    // 返回深拷贝，并对 credentials 里的 password 统一解密
+    const data = structuredClone(this.data);
+    for (const id of Object.keys(data.credentials || {})) {
+      const c = data.credentials[id];
+      if (c && c.password) c.password = this._dec(c.password);
+    }
+    return data;
   }
 }
 
