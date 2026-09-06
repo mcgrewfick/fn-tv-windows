@@ -20,16 +20,21 @@
 
 飞牛影视 API 使用了 `authx` 签名算法，需要两个常量（逆向自公开前端 JS）。为避免硬编码到仓库，请通过环境变量注入：
 
-```bash
+| 变量 | 说明 |
+|---|---|
+| `FNTOS_SECRET` | authx 签名的 secret |
+| `FNTOS_API_KEY` | authx 签名的 api_key |
+| `FNTOS_BASE` | （可选）服务器地址，如 `http://<NAS-IP>:5666` |
+
+复制 `client/.env.example` 为 `.env` 并填入实际值，或直接在 PowerShell 中设置：
+
+```powershell
 # Windows PowerShell
 $env:FNTOS_SECRET = "你的 secret"
 $env:FNTOS_API_KEY = "你的 api_key"
 ```
 
-- `FNTOS_SECRET` — authx 签名的 secret
-- `FNTOS_API_KEY` — authx 签名的 api_key
-
-> 提示：这两个值可通过抓取/查看飞牛影视网页前端的 JS 资源获得。出于尊重版权与安全的考虑，本仓库不内置。
+> 提示：这两个值可通过抓取/查看飞牛影视网页前端的 JS 资源获得（`authx` 签名算法中的 `secret` 与 `api_key`）。出于尊重版权与安全的考虑，本仓库不内置。
 
 ## 快速开始
 
