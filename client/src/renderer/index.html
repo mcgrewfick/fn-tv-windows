@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' fntv: data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>飞牛影视</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!-- 自绘标题栏 -->
+  <header class="titlebar" id="titlebar">
+    <div class="titlebar__left">
+      <div class="brand">
+        <svg class="brand__logo" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path fill="currentColor" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm2.6 4.2v9.6h2.3l3.1-4.9-3.1-4.7H6.6Zm4.6 0v9.6h2.2v-3.6h2.9a3 3 0 0 0 0-6h-5.1Zm2.2 1.9h2.7a1.1 1.1 0 0 1 0 2.2h-2.7V9.1Z"/>
+        </svg>
+        <span class="brand__name">飞牛影视</span>
+      </div>
+    </div>
+
+    <div class="titlebar__center">
+      <div class="search" id="searchBox">
+        <svg viewBox="0 0 24 24" width="15" height="15" class="search__icon">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                d="M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15ZM21 21l-5.2-5.2"/>
+        </svg>
+        <input id="searchInput" type="text" placeholder="搜索影片、剧集、演员" autocomplete="off"/>
+      </div>
+    </div>
+
+    <div class="titlebar__right">
+      <div class="user" id="userChip" title="当前用户"></div>
+      <div class="win-btns">
+        <button class="win-btn" id="btnMin" title="最小化">
+          <svg viewBox="0 0 10 10" width="10" height="10"><path stroke="currentColor" stroke-width="1" d="M0 5h10"/></svg>
+        </button>
+        <button class="win-btn" id="btnMax" title="最大化">
+          <svg viewBox="0 0 10 10" width="10" height="10"><path stroke="currentColor" stroke-width="1" fill="none" d="M.5.5h9v9h-9z"/></svg>
+        </button>
+        <button class="win-btn win-btn--close" id="btnClose" title="关闭">
+          <svg viewBox="0 0 10 10" width="10" height="10"><path stroke="currentColor" stroke-width="1" d="M0 0l10 10M10 0L0 10"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体 -->
+  <div class="app" id="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content" id="content"></main>
+  </div>
+
+  <!-- 登录层 -->
+  <div class="login-layer" id="loginLayer"></div>
+
+  <!-- 详情抽屉 -->
+  <div class="drawer" id="drawer"></div>
+
+  <!-- 全局提示 -->
+  <div class="toast-host" id="toastHost"></div>
+
+  <script src="js/util.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/views/login.js"></script>
+  <script src="js/views/home.js"></script>
+  <script src="js/views/library.js"></script>
+  <script src="js/views/detail.js"></script>
+  <script src="js/views/search.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "fn-tv-client",
+  "version": "0.1.0",
+  "description": "飞牛影视 Windows 本地客户端 - 本地硬解播放",
+  "main": "src/main/index.js",
+  "author": "fn-tv",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "7zip-bin": "^5.2.0",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.fntv.client",
+    "productName": "FnTV",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../vendor/mpv-bin",
+        "to": "mpv"
+      }
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "飞牛影视-${version}-win-x64.${ext}"
+    }
+  }
+}

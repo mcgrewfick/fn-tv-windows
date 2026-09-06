@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>播放器</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/overlay.css">
+</head>
+<body>
+  <div class="ov" id="ov">
+    <!-- 顶部 -->
+    <div class="ov__top" id="ovTop">
+      <button class="ov-btn" id="btnBack" title="关闭播放器 (Esc)">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/>
+        </svg>
+      </button>
+      <div class="ov__title" id="ovTitle"></div>
+      <div class="ov__hwdec" id="ovHwdec"></div>
+    </div>
+
+    <!-- 中间缓冲提示 -->
+    <div class="ov__center">
+      <div class="ov__spinner" id="ovSpinner"></div>
+      <div class="ov__error" id="ovError"></div>
+    </div>
+
+    <!-- 底部控制条 -->
+    <div class="ov__bottom" id="ovBottom">
+      <div class="ov-progress" id="ovProgress">
+        <div class="ov-progress__track">
+          <div class="ov-progress__buffer"></div>
+          <div class="ov-progress__played" id="ovPlayed"></div>
+          <div class="ov-progress__thumb" id="ovThumb"></div>
+        </div>
+        <div class="ov-progress__tip" id="ovTip"></div>
+      </div>
+
+      <div class="ov-bar">
+        <div class="ov-bar__left">
+          <button class="ov-btn" id="btnPlay" title="播放/暂停 (空格)">
+            <svg id="icPlay" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            <svg id="icPause" viewBox="0 0 24 24" width="20" height="20" style="display:none"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+          </button>
+          <button class="ov-btn" id="btnBack10" title="后退 10 秒 (←)">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M11 8H6.5V3.5M6.6 8.2A7.5 7.5 0 1 1 4.5 12"/></svg>
+          </button>
+          <button class="ov-btn" id="btnFwd10" title="前进 10 秒 (→)">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M13 8h4.5V3.5M17.4 8.2A7.5 7.5 0 1 0 19.5 12"/></svg>
+          </button>
+
+          <div class="ov-time"><span id="tCur">00:00</span> / <span id="tDur">00:00</span></div>
+        </div>
+
+        <div class="ov-bar__right">
+          <button class="ov-btn ov-text" id="btnSpeed" title="播放速度">1.0x</button>
+
+          <div class="ov-vol">
+            <button class="ov-btn" id="btnMute" title="静音 (M)">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M4 9h3.5L12 5v14l-4.5-4H4z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M15.5 9.5a3.5 3.5 0 0 1 0 5M18 7a7 7 0 0 1 0 10"/></svg>
+            </button>
+            <input type="range" id="volRange" min="0" max="130" value="100" title="音量"/>
+          </div>
+
+          <button class="ov-btn ov-text" id="btnAudio" title="音轨">音轨</button>
+          <button class="ov-btn ov-text" id="btnSub" title="字幕">字幕</button>
+
+          <button class="ov-btn" id="btnFull" title="全屏 (F)">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹出菜单 -->
+    <div class="ov-menu" id="ovMenu"></div>
+  </div>
+
+  <script src="js/overlay.js"></script>
+</body>
+</html>

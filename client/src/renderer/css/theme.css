@@ -1,0 +1,79 @@
+/**
+ * 配色取自飞牛影视 Web 端（暗色主题）
+ * 主色 #5769ff 为飞牛影视品牌紫蓝
+ */
+:root {
+  /* 背景层级（对齐飞牛 Web 端 Semi Design 暗色 grey 色板） */
+  --bg-0: #101011;        /* 最底层 grey-0 = 16,16,17 */
+  --bg-1: #19191a;        /* 页面主背景 grey-1 = 25,25,26 */
+  --bg-2: #202021;        /* 卡片 / 侧栏 grey-2 = 32,32,33 */
+  --bg-3: #2a2a2b;        /* 悬浮 / 输入框 grey-3 = 42,42,43 */
+  --bg-4: #2f3031;        /* hover 强 */
+
+  /* 主色 */
+  --primary: #5769ff;
+  --primary-hover: #6b7bff;
+  --primary-active: #4756e6;
+  --primary-soft: rgba(87, 105, 255, .16);
+
+  /* 文本（对齐 Semi text-0/1/2/3） */
+  --text-0: #ffffff;
+  --text-1: rgba(255, 255, 255, .80);
+  --text-2: rgba(255, 255, 255, .60);
+  --text-3: rgba(255, 255, 255, .35);
+
+  /* 边框 / 分隔 */
+  --border: rgba(255, 255, 255, .08);
+  --border-strong: rgba(255, 255, 255, .14);
+  --card-border: rgba(255, 255, 255, .12);   /* Semi card-border #ffffff1f */
+
+  /* 箭头遮罩（横向滚动块两侧渐变） */
+  --arrow-mask: rgba(25, 25, 26, .5);        /* Semi bg-arrow-mask */
+
+  /* 功能色 */
+  --success: #33b0ab;
+  --warning: #f58700;
+  --danger: #fe8090;
+
+  /* 尺寸 */
+  --titlebar-h: 46px;
+  --sidebar-w: 208px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+
+  --shadow-1: 0 2px 8px rgba(0, 0, 0, .32);
+  --shadow-2: 0 8px 28px rgba(0, 0, 0, .45);
+
+  --ease: cubic-bezier(.25, .8, .25, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg-1);
+  color: var(--text-0);
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", -apple-system, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .14);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, .24); }
+
+button { font-family: inherit; }
+input { font-family: inherit; }
