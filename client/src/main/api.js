@@ -5,13 +5,10 @@
  * 关键实现：authx 签名算法
  */
 const crypto = require('crypto');
+const { SECRET, API_KEY } = require('./secrets');
 
 // ========== 常量（逆向自前端 JS） ==========
-// secret / api_key 从环境变量读取，未设置时回退为空串（首次运行需在启动环境中注入）
-// 说明：这两个值逆向自飞牛影视公开前端 JS，非用户私有凭据；
-// 为降低仓库泄漏风险，这里不再硬编码，改为 FNTOS_SECRET / FNTOS_API_KEY。
-const SECRET = process.env.FNTOS_SECRET || '';
-const API_KEY = process.env.FNTOS_API_KEY || '';
+// secret / api_key 见 ./secrets.js（该文件已 gitignore，不提交公开仓库）
 const CLIENT_TYPE = 'Trim-NAS';
 const CLIENT_VERSION = '629';
 const API_V1 = '/v/api/v1';

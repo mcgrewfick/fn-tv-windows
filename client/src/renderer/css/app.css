@@ -280,8 +280,9 @@
 
 /* ============ 登录层 ============ */
 .login-layer {
-  position: fixed; inset: 0;
-  z-index: 200;
+  position: fixed; left: 0; right: 0;
+  top: var(--titlebar-h); bottom: 0;
+  z-index: 50;   /* 低于标题栏(z-index:100)，保证关闭按钮始终可见可点 */
   display: none;
   align-items: center; justify-content: center;
   background:
